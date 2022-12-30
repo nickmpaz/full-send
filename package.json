@@ -1,0 +1,37 @@
+{
+  "name": "@npaz/courier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc -w",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickmpaz/courier.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nickmpaz/courier/issues"
+  },
+  "homepage": "https://github.com/nickmpaz/courier#readme",
+  "bin": "./lib/command-line.js",
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/inquirer": "^8.2.5",
+    "@types/node": "^18.11.18",
+    "@types/node-fetch": "^2.6.2",
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "glob": "^8.0.3",
+    "inquirer": "^8.2.5",
+    "node-fetch": "^2.6.6"
+  }
+}
