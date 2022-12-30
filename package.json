@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc -w",
     "format": "prettier --write .",
-    "publish": "(git diff --quiet && git tag -a v$npm_package_version -m v$npm_package_version && tsc && npm publish --access public && echo 'Success') || echo 'Fail'"
+    "publish": "tsc && npm publish --access public"
   },
   "repository": {
     "type": "git",
