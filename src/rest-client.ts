@@ -13,7 +13,7 @@ class RestClient {
     this.requests[name] = { name, func };
   }
 
-  async Fetch(
+  async send(
     url: RequestInfo,
     init?: RequestInit | undefined
   ): Promise<Response> {
@@ -82,6 +82,6 @@ class RestClient {
 
 const restClient = new RestClient();
 const request = restClient.request.bind(restClient);
-const Fetch = restClient.Fetch.bind(restClient);
+const send = restClient.send.bind(restClient);
 
-export { restClient, request, Fetch };
+export { restClient, request, send };

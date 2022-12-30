@@ -1,1 +1,1 @@
-export { request, Fetch } from "./rest-client";
+export { request, send } from "./rest-client";
