@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc -w",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "tag": "git tag -a $npm_package_version -m $npm_package_version",
+    "publish": "tsc && git "
   },
   "repository": {
     "type": "git",
