@@ -13,8 +13,7 @@ interface Exchange {
   url: RequestInfo;
   init?: RequestInit | undefined;
   response: Response;
-  outputPretty: string;
-  outputRaw: string;
+  body: string;
 }
 
 enum SelectionOptions {

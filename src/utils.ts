@@ -1,46 +1,52 @@
 import glob from "glob";
 import inquirer from "inquirer";
-import { Response } from "node-fetch";
 import {
   error,
   header,
-  infoPrimary,
-  prettyObject,
+  infoSecondary,
   prettySentence,
   success,
 } from "./console";
+import { Exchange } from "./definitions/types";
 
-const formatResponse = (
-  response: Response,
-  body: string,
-  raw: boolean = false
-): string => {
-  const statusLineColor = response.ok ? success : error;
-  const statusLine = statusLineColor(
-    `${response.status} ${response.statusText}`,
-    !raw
+const getExchangeSummary = (exchange: Exchange) => {
+  const statusColor = exchange.response.ok ? success : error;
+  const status = statusColor(
+    `${exchange.response.status} ${exchange.response.statusText}`,
+    true
   );
+  const requestMethod = infoSecondary(exchange.init?.method ?? "GET", true);
+  const bodyText = prettySentence(exchange.body, {
+    characterLimit: 1000,
+    showRemainingCharacters: true,
+    color: true,
+  });
+  const initText = !!exchange.init
+    ? `\n${JSON.stringify(exchange.init, null, 2)}\n`
+    : "";
+
   return `
-${statusLine} <= ${infoPrimary(response.url, !raw)}
+${header("request", { color: true })}
 
-${header("headers", { color: !raw })}
+${status} <- ${requestMethod} ${exchange.response.url}
+${initText}
+${header("body", { color: true })}
 
-${prettyObject(response.headers.raw(), {
-  entryLimit: raw ? undefined : 5,
-  showRemainingEntries: !raw,
-  characterLimit: raw ? undefined : 80,
-  showRemainingCharacters: !raw,
-  color: !raw,
-})}
+${bodyText}
+  `;
+};
 
-${header("body", { color: !raw })}
-
-${prettySentence(body, {
-  characterLimit: raw ? undefined : 1000,
-  showRemainingCharacters: !raw,
-  color: !raw,
-})}
-`;
+const exchangeToString = (exchange: Exchange) => {
+  const response = {
+    ...exchange.response,
+    body: exchange.body,
+  };
+  const text = {
+    url: exchange.url,
+    init: exchange.init,
+    response,
+  };
+  return JSON.stringify(text, null, 2);
 };
 
 const getHttpFiles = (): Promise<string[]> => {
@@ -60,4 +66,4 @@ const openInEditor = (text: string) => {
   });
 };
 
-export { formatResponse, getHttpFiles, openInEditor };
+export { getHttpFiles, openInEditor, getExchangeSummary, exchangeToString };

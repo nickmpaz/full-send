@@ -1,13 +1,14 @@
 {
   "name": "@npaz/full-send",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc -w",
     "format": "prettier --write .",
-    "deploy": "tsc && npm publish --access public"
+    "build": "tsc",
+    "deploy": "npm publish --access public"
   },
   "repository": {
     "type": "git",

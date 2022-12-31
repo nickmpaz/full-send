@@ -96,7 +96,7 @@ const prettyStringify = (text: string) => {
 
 const header = (text: string, options: { color?: boolean } = {}) => {
   const { color = false } = options;
-  return infoPrimary(text.toUpperCase(), color);
+  return infoPrimary(`[ ${text.toUpperCase()} ]`, color);
 };
 
 export {

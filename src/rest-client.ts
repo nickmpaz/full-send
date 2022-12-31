@@ -1,6 +1,6 @@
 import fetch, { RequestInfo, RequestInit, Response } from "node-fetch";
 import inquirer from "inquirer";
-import { infoPrimary, prettyStringify } from "./console";
+import { infoPrimary } from "./console";
 import {
   Collection,
   Exchange,
@@ -8,7 +8,12 @@ import {
   Action,
   SelectionOptions,
 } from "./definitions/types";
-import { formatResponse, getHttpFiles, openInEditor } from "./utils";
+import {
+  exchangeToString,
+  getExchangeSummary,
+  getHttpFiles,
+  openInEditor,
+} from "./utils";
 
 class RestClient {
   exchanges: Exchange[] = [];
@@ -42,10 +47,8 @@ class RestClient {
   ): Promise<Response> {
     const response = await fetch(url, init);
     const responseClone = response.clone();
-    const body = prettyStringify(await response.text());
-    const outputPretty = formatResponse(response, body);
-    const outputRaw = formatResponse(response, body, true);
-    this.exchanges.push({ url, init, response, outputPretty, outputRaw });
+    const body = await response.text();
+    this.exchanges.push({ url, init, response, body });
     return responseClone;
   }
 
@@ -112,7 +115,7 @@ class RestClient {
       await inquirer.prompt({
         type: "list",
         name: "selection",
-        message: "pick one",
+        message: "Make a selection:",
         loop: false,
         pageSize: 10,
         choices: [
@@ -134,7 +137,7 @@ class RestClient {
     this.exchanges = [];
     await action.func();
     const combinedOutputPretty = this.exchanges
-      .map((exchange) => exchange.outputPretty)
+      .map((exchange) => getExchangeSummary(exchange))
       .join("\n");
     console.log(combinedOutputPretty);
   }
@@ -145,9 +148,9 @@ class RestClient {
         await this.executeAction(action);
         await this.doNextThing(action);
       },
-      "Inspect raw output in $EDITOR": async () => {
+      "Inspect raw data in $EDITOR": async () => {
         const combinedOutputRaw = this.exchanges
-          .map((exchange) => exchange.outputRaw)
+          .map((exchange) => exchangeToString(exchange))
           .join("\n");
         await openInEditor(combinedOutputRaw);
         await this.doNextThing(action);
@@ -157,7 +160,7 @@ class RestClient {
     const result = await inquirer.prompt({
       type: "list",
       name: "selection",
-      message: "What do you want to do?",
+      message: "Make a selection:",
       choices: Object.keys(choices),
     });
 
