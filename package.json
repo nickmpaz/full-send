@@ -22,6 +22,7 @@
   "homepage": "https://github.com/nickmpaz/full-send#readme",
   "bin": "./lib/command-line.js",
   "devDependencies": {
+    "@npaz/full-send": "^0.0.3",
     "@types/glob": "^8.0.0",
     "@types/inquirer": "^8.2.5",
     "@types/node": "^18.11.18",

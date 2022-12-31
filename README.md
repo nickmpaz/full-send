@@ -25,12 +25,12 @@ After installing `full-send`, you'll need to register your first `action`. You
 can think of an `action` as a function that will send your request.
 
 ```javascript
-// /path/to/your/project/hello.send.js
+// /path/to/your/project/hello-world.send.js
 // IMPORTANT: the file extension must be ".send.js"
 
 import { send, action } from "@npaz/full-send";
 
-action("hello world!", async () => {
+action("hello world", async () => {
   // the send function is a thin wrapper around fetch that lets full-send
   // hook into your request
   await send("https://jsonplaceholder.typicode.com/todos/1");
@@ -69,7 +69,7 @@ You can organize your `actions` into groups by registering them inside of a
 ```javascript
 import { send, action, collection } from "@npaz/full-send";
 
-collection("my first request", () => {
+collection("my first collection", () => {
   action("action 1", async () => {
     await send("https://jsonplaceholder.typicode.com/todos/1");
   });
@@ -120,7 +120,7 @@ import { send, action } from "@npaz/full-send";
 
 let counter = 1;
 
-action("hello world!", async () => {
+action("persistent state", async () => {
   await send(`https://jsonplaceholder.typicode.com/todos/${counter}`);
   counter += 1;
 });
