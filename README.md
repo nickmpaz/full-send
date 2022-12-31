@@ -13,6 +13,15 @@
 - As an engineer, I want to be able to interact with my HTTP client through a UI, so that once I write my HTTP client library it is easy and convenient to use it.
 - As an engineer, I want to build something, so that I can have fun.
 
+## Try it out
+
+```
+git clone https://github.com/nickmpaz/full-send.git
+cd full-send
+npm install
+npx full-send
+```
+
 ## Installation
 
 ```
