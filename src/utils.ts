@@ -52,7 +52,7 @@ const exchangeToString = (exchange: Exchange) => {
 const getHttpFiles = (): Promise<string[]> => {
   return new Promise((resolve) => {
     const currentDirectory = process.cwd();
-    glob(currentDirectory + "/**/*.http.js", {}, async (err, files) => {
+    glob(currentDirectory + "/**/*.send.js", {}, async (err, files) => {
       resolve(files);
     });
   });
