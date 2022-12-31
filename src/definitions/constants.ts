@@ -1,5 +1,5 @@
 const commandLineName = "full-send";
 const commandLineDescription = "description";
-const commandLineVersion = "1.0.0";
+const commandLineVersion = "0.0.1";
 
 export { commandLineName, commandLineDescription, commandLineVersion };
