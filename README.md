@@ -19,6 +19,7 @@
 git clone https://github.com/nickmpaz/full-send.git
 cd full-send
 npm install
+npm run build
 npx full-send
 ```
 
