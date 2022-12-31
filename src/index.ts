@@ -1,1 +1,1 @@
-export { request, send } from "./rest-client";
+export { action, send, collection } from "./rest-client";

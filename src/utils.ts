@@ -1,4 +1,5 @@
 import glob from "glob";
+import inquirer from "inquirer";
 import { Response } from "node-fetch";
 import {
   error,
@@ -51,4 +52,12 @@ const getHttpFiles = (): Promise<string[]> => {
   });
 };
 
-export { formatResponse, getHttpFiles };
+const openInEditor = (text: string) => {
+  return inquirer.prompt({
+    type: "editor",
+    name: "inspect",
+    default: text,
+  });
+};
+
+export { formatResponse, getHttpFiles, openInEditor };
