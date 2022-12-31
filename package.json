@@ -1,6 +1,6 @@
 {
   "name": "@npaz/full-send",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/nickmpaz/full-send.git"
   },
-  "author": "",
+  "author": "Nick Paz",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nickmpaz/full-send/issues"
