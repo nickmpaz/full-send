@@ -1,8 +1,11 @@
 ## About
+
 `Full-send` is an HTTP client framework for node. With `full-send`, you write your HTTP request library as code, and execute your requests using the terminal UI.
 
 ## Motiviation
+
 `Full-send` is designed to be a replacement for HTTP platforms/ clients like Postman or Insomnia REST Client. Some of the problems it attempts to address:
+
 - As an engineer, I don't want to have to learn platforms and fiddle with GUI applications, so that I can save time.
 - As an engineer, I want an HTTP client that integrates with my development environment/ terminal/ IDE, so that I can reduce context switching in my workflow.
 - As an engineer, I want to write my HTTP client library as code, so that I can commit it to version control for my team and myself.
@@ -35,6 +38,7 @@ action("hello world!", async () => {
 ```
 
 Once you've done so, you can run your action using the command-line interface.
+
 ```
 $ npx full-send
 ? Make a selection: hello world!
@@ -51,11 +55,11 @@ $ npx full-send
   "title": "delectus aut autem",
   "completed": false
 }
-  
+
 ? Make a selection: (Use arrow keys)
-❯ Run this action again 
-  Inspect raw data in $EDITOR 
-  Back 
+❯ Run this action again
+  Inspect raw data in $EDITOR
+  Back
 ```
 
 You can organize your `actions` into groups by registering them inside of a
@@ -121,7 +125,9 @@ action("hello world!", async () => {
   counter += 1;
 });
 ```
+
 ## API
+
 WIP
 
 ## Known Issues
