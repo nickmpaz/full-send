@@ -21,16 +21,13 @@ const getExchangeSummary = (exchange: Exchange) => {
     showRemainingCharacters: true,
     color: true,
   });
-  const initText = !!exchange.init
-    ? `\n${JSON.stringify(exchange.init, null, 2)}\n`
-    : "";
 
   return `
 ${header("request", { color: true })}
 
 ${status} <- ${requestMethod} ${exchange.response.url}
-${initText}
-${header("body", { color: true })}
+
+${header("response", { color: true })}
 
 ${bodyText}
   `;
