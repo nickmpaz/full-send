@@ -94,13 +94,13 @@ class RestClient {
 
   async promptSelection(): Promise<Collection | Action | SelectionOptions> {
     const collectionChoicesHeader = this.currentCollection.collections.length
-      ? [new inquirer.Separator(header('collections', { color: true }))]
+      ? [new inquirer.Separator(header("collections", { color: true }))]
       : [];
     const collectionChoices = this.currentCollection.collections.map(
       (collection) => ({ name: collection.name, value: collection })
     );
     const actionChoicesHeader = this.currentCollection.actions.length
-      ? [new inquirer.Separator(header('actions', { color: true }))]
+      ? [new inquirer.Separator(header("actions", { color: true }))]
       : [];
     const actionChoices = this.currentCollection.actions.map((action) => ({
       name: action.name,
@@ -119,7 +119,7 @@ class RestClient {
         loop: false,
         pageSize: 10,
         choices: [
-          new inquirer.Separator(header('options', { color: true })),
+          new inquirer.Separator(header("options", { color: true })),
           this.currentCollection.parent === null
             ? SelectionOptions.Quit
             : SelectionOptions.Back,

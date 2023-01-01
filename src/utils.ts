@@ -4,6 +4,7 @@ import {
   error,
   header,
   infoSecondary,
+  prettyObject,
   prettySentence,
   success,
 } from "./console";
@@ -23,25 +24,38 @@ const getExchangeSummary = (exchange: Exchange) => {
   });
 
   return `
-${header("request", { color: true })}
+${header("status", { color: true })}
 
 ${status} <- ${requestMethod} ${exchange.response.url}
 
-${header("response", { color: true })}
+${header("headers", { color: true })}
+
+${prettyObject(exchange.response.headers.raw(), {
+  entryLimit: 5,
+  showRemainingEntries: true,
+  characterLimit: 80,
+  showRemainingCharacters: false,
+  color: true,
+})}
+
+${header("body", { color: true })}
 
 ${bodyText}
   `;
 };
 
 const exchangeToString = (exchange: Exchange) => {
-  const response = {
-    ...exchange.response,
-    body: exchange.body,
-  };
   const text = {
     url: exchange.url,
     init: exchange.init,
-    response,
+    response: {
+      size: exchange.response.size,
+      timeout: exchange.response.timeout,
+      status: exchange.response.status,
+      statusText: exchange.response.statusText,
+      body: exchange.body,
+      headers: exchange.response.headers.raw(),
+    }
   };
   return JSON.stringify(text, null, 2);
 };
